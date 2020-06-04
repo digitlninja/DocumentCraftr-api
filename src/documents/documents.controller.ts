@@ -2,15 +2,20 @@ import {
   BadRequestException,
   Body,
   Controller,
+  DefaultValuePipe,
+  Delete,
   Get,
   Inject,
   Param,
-  Post, Put,
+  ParseBoolPipe,
+  Post,
+  Put,
   Query,
 } from '@nestjs/common';
 import { DocumentsRepository } from './documents.repository';
 import { CreateDocumentDto } from './dtos/create-document.dto';
 import { Document } from './interfaces/Document';
+import { IdParams } from '../dtos/id-params.dto';
 
 @Controller('documents')
 export class DocumentsController {
@@ -23,21 +28,36 @@ export class DocumentsController {
   }
 
   @Get(':id')
-  async find(@Param('id') id: string): Promise<Document> {
-    const document = await this.documentsRepository.find(id);
-    if(!document) {
+  async find(
+    @Param() { id }: IdParams,
+    @Query('includeResources', new DefaultValuePipe(true), ParseBoolPipe) includeResources: boolean,
+  ): Promise<Document> {
+    const document = await this.documentsRepository.find(id, includeResources);
+    if (!document) {
       throw new BadRequestException();
     }
     return document;
   }
 
   @Post()
-  create(@Body() createDocumentDto: CreateDocumentDto): Promise<Document> {
-    return this.documentsRepository.create(createDocumentDto);
+  async create(@Body() createDocumentDto: CreateDocumentDto): Promise<Document> {
+    return await this.documentsRepository.create(createDocumentDto);
   }
 
-  @Put()
-  update(@Query('id') id: string, @Body() createDocumentDto: CreateDocumentDto): Promise<Document> {
-    return this.documentsRepository.update(id, createDocumentDto);
+  @Put(':id')
+  async update(@Param() { id }: IdParams, @Body() createDocumentDto: CreateDocumentDto): Promise<Document> {
+    const updatedDocument = await this.documentsRepository.update(id, createDocumentDto);
+    if (!updatedDocument) {
+      throw new BadRequestException();
+    }
+    return updatedDocument;
+  }
+
+  @Delete(':id')
+  async delete(@Param() { id }: IdParams): Promise<void> {
+    const deleteDocument = await this.documentsRepository.delete(id);
+    if (!deleteDocument) {
+      throw new BadRequestException();
+    }
   }
 }

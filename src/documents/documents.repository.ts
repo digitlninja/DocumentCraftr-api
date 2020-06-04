@@ -10,6 +10,21 @@ export class DocumentsRepository {
   constructor(@Inject(DOCUMENT_MODEL) private documentModel: Model<Document>) {
   }
 
+  async findAll(): Promise<Document[]> {
+    return this.documentModel.find();
+  }
+
+  async find(id: string, includeResources = true): Promise<Document> {
+    const document = this.documentModel.findById(id);
+    if (includeResources) {
+      document.populate('resources');
+    }
+    if (!document) {
+      throw new BadRequestException();
+    }
+    return document;
+  }
+
   async create(createDocumentDto: CreateDocumentDto): Promise<Document> {
     const createdDocument = new this.documentModel(createDocumentDto);
     return createdDocument.save();
@@ -20,15 +35,7 @@ export class DocumentsRepository {
     return this.documentModel.findByIdAndUpdate(id, createDocumentDto, { new: true });
   }
 
-  async findAll(): Promise<Document[]> {
-    return this.documentModel.find().exec();
-  }
-
-  async find(id: string): Promise<Document> {
-    const document = this.documentModel.findById(id).exec();
-    if(!document) {
-      throw new BadRequestException();
-    }
-    return document;
+  async delete(id: string): Promise<Document> {
+    return this.documentModel.findOneAndDelete({ _id: id });
   }
 }

@@ -1,11 +1,17 @@
 import { IsNotEmpty, IsString } from 'class-validator';
+export type ResourceType = "file" | "link";
 
-export class CreateDocumentDto {
+export class CreateResourceDto {
   @IsString()
   @IsNotEmpty()
   title: string;
 
   @IsString()
   @IsNotEmpty()
+  type: ResourceType;
+
+  @IsString()
+  @IsNotEmpty()
   body: string;
 }
+

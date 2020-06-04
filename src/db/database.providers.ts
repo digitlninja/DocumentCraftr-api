@@ -8,7 +8,7 @@ export const databaseProviders = [
     provide: DATABASE_CONNECTION,
     name: 'mongoose',
     useFactory: (): Promise<typeof mongoose> =>
-      mongoose.connect(environment.database.url, { useNewUrlParser: true, useUnifiedTopology: true }),
+      mongoose.connect(environment.database.url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }),
   },
 ];
 

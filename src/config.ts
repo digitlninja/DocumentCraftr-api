@@ -22,7 +22,7 @@ export const config: IConfig = {
     // Database settings
     database: {
       port: '27017',
-      url: 'mongodb://localhost:27017/keenious',
+      url: 'mongodb://mongo:27017/keenious',
       name: 'keenious'
     },
     // Server information

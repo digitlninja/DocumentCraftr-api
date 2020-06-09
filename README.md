@@ -1,75 +1,48 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
-
-[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
-[travis-url]: https://travis-ci.org/nestjs/nest
-[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
-[linux-url]: https://travis-ci.org/nestjs/nest
-  
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
-<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ npm install
-```
+The Api for Keenious ReCraftr Application.
 
 ## Running the app
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+Run these commands from the project root folder.
+1. Build the docker container. 
+```
+$ docker build -t api .
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+2. Spin up the container
+```
+$ docker run -it -p 3001:3001 api
 ```
 
-## Support
+Built with NestJS
+# Nest Summary (and why I love it)
+If you've not heard of it, NestJS is a Javascript and TypeScript framework which aims to make NodeJS application development significantly more powerful, secure, and cleaner.
+I'd definitely suggest it for your upcoming apps.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Here's a few reasons.
+- It better allows for many great principles SOLID principles without hacking away and "breaking it to work".
+- Everything is abstracted, and it has many powerful features that allow loose coupling and many other powerful patterns that most JS developers aren't aware of, or don't put the effort into implementing.
+- It has an extremely powerful CLI which enhances backend JS development.
+- It helps developers to keep things more tidy if they choose (I've noticed many JS devs in my years don't know good patterns, practice or concepts of writing clean, elegant and maintainable code)
+- It encourages TypeScript, which has become the standard for many top JS based startup's and companies who are wanting to build maintainable, scalable, clean and long-lasting software with JS.
+- It allows for bleeding edge JS features.
+- It allows for great OOP and FP.
+- With my many years experience building microservices, I feel, it is MADE for microservices. Or any app of any size generally :D
 
-## Stay in touch
+Here's a good article on NEST : https://blog.logrocket.com/node-back-end-next-level-nestjs/
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+# * Note on Controllers
+By default, NestJS Controllers (which receive requests), will catch any errors thrown and return a 500 or other error status code
+They have a built in exception handling middleware.
+So you may see in some instances I've not added any error handling. This is why.
 
-## License
+# Other notes
+- I've organised the code into domain-specific folders. (documents for documents and so forth)
+- main.ts is the entry point that bootstraps the server.
+- I've used interfaces to type and document all methods, data shapes and properties.
+- DTOs are used to send only the data we want across the wire (for security).
+- I'm using mongo with mongoose (it also supports postgres/sql).
 
-  Nest is [MIT licensed](LICENSE).
+Please shout if you have any questions :)

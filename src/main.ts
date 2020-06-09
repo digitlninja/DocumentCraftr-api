@@ -14,10 +14,13 @@ async function bootstrap() {
       console.log('Database connection failed.', error);
     }
   });
-
   // Enable validation decorators
   app.useGlobalPipes(new ValidationPipe());
-  await app.listen(3000);
+
+  app.enableCors();
+  await app.listen(3001);
+  console.log('Keenious API Running on:', 'http://localhost:3001');
+
 }
 
 bootstrap();

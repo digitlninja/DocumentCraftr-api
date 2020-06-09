@@ -3,9 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DocumentsModule } from './documents/documents.module';
 import { ResourcesModule } from './resources/resources.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [DocumentsModule, ResourcesModule],
+  imports: [ConfigModule.forRoot(), DocumentsModule, ResourcesModule],
   controllers: [AppController],
   providers: [AppService],
 })

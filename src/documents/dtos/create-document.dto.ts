@@ -1,11 +1,11 @@
 import { IsNotEmpty, IsString } from 'class-validator';
+import {Resource} from "../../resources/interfaces/Resource";
 
 export class CreateDocumentDto {
   @IsString()
   @IsNotEmpty()
   title: string;
 
-  @IsString()
-  @IsNotEmpty()
   body: string;
+  resources: Resource[]
 }

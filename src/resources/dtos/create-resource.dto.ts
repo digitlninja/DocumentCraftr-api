@@ -10,8 +10,6 @@ export class CreateResourceDto {
   @IsNotEmpty()
   type: ResourceType;
 
-  @IsString()
-  @IsNotEmpty()
   body: string;
 }
 

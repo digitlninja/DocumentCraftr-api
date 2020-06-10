@@ -11,5 +11,6 @@ export class CreateResourceDto {
   type: ResourceType;
 
   body: string;
+  notes: string;
 }
 

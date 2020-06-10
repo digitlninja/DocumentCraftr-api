@@ -5,6 +5,7 @@ export interface Resource extends MongooseDocument {
   readonly title: string,
   readonly type: ResourceType,
   readonly body: string,
+  readonly notes: string,
   readonly documentTitle: string,
   readonly documentId: string,
   readonly createdAt: Date;

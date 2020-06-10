@@ -6,18 +6,23 @@ The Api for Keenious ReCraftr Application.
 ## Running the app
 
 Run these commands from the project root folder.
-1. Build the docker container. 
+
+1 - Build the docker image. 
 ```
 $ docker build -t api .
 ```
-
-2. Spin up the container
+2 - Run docker compose.
 ```
-$ docker run -it -p 3001:3001 api
+$ docker-compose build
+```
+3 - Spin up the container
+```
+$ docker-compose up
 ```
 
-Built with NestJS
-# Nest Summary (and why I love it)
+(Built with NestJS)
+
+# NestJS Summary (and why I love it)
 If you've not heard of it, NestJS is a Javascript and TypeScript framework which aims to make NodeJS application development significantly more powerful, secure, and cleaner.
 I'd definitely suggest it for your upcoming apps.
 
